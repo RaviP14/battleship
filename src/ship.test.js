@@ -6,6 +6,12 @@ test('length of ship', () => {
   expect(ship1.getLength()).toBe(2);
 });
 
+test('name of ship', () => {
+  const ship1 = makeShip.newShip(2, 'Battleship');
+
+  expect(ship1.getName()).toBe('Battleship');
+});
+
 test('is the ship hit', () => {
   const ship2 = makeShip.newShip(3);
 

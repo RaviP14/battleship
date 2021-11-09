@@ -1,6 +1,7 @@
 const makeShip = (() => {
-  const ship = (length) => {
+  const ship = (length, name) => {
     const getLength = () => length;
+    const getName = () => name;
 
     const position = Array.from(Array(length).keys());
 
@@ -25,11 +26,11 @@ const makeShip = (() => {
       return notSunk;
     };
 
-    return { getLength, hit, isSunk };
+    return { getLength, hit, isSunk, getName };
   };
 
-  function newShip(length) {
-    const ship1 = ship(length);
+  function newShip(length, name) {
+    const ship1 = ship(length, name);
     return ship1;
   }
 
