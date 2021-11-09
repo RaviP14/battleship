@@ -6,7 +6,7 @@ const makeShip = (() => {
     const position = Array.from(Array(length).keys());
 
     const hit = (n) => {
-      if (position[n] !== 'hit') {
+      if (n <= length && position[n] !== 'hit') {
         position[n] = 'hit';
       }
       return position[n];
