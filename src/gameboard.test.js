@@ -11,3 +11,11 @@ test('place ship on gameboard', () => {
     'ship: (Battleship) placed at (2, 1)'
   );
 });
+
+test('Attack a ship', () => {
+  const board1 = makeGameboard.newGameboard();
+  board1.placeship(3, 3, 'horizontal', 4, 'Submarine');
+  expect(board1.receiveAttack(3, 3)).toBe('hit');
+  expect(board1.receiveAttack(1, 3)).toBe('miss');
+  expect(board1.receiveAttack(6, 3)).toBe('hit');
+});

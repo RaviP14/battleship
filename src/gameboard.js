@@ -23,7 +23,8 @@ const makeGameboard = (() => {
       let coordY = y;
       if (!Number.isNaN(board[coordY][coordX])) {
         for (let i = 0; i < length; i += 1) {
-          board[coordY][coordX] = ship.getName();
+          const shipName = ship.getName();
+          board[coordY][coordX] = [shipName, i];
           if (position === 'vertical') {
             coordY += 1;
           } else if (position === 'horizontal') {
@@ -31,10 +32,39 @@ const makeGameboard = (() => {
           }
         }
       }
-      return `ship: (${board[y][x]}) placed at (${x}, ${y})`;
+      return `ship: (${board[y][x][0]}) placed at (${x}, ${y})`;
+    };
+    // Find ship using ship.name in ships array
+    const findShip = (shipName) => {
+      const ship = ships.find((obj) => {
+        return obj.getName() === shipName;
+      });
+      return ship;
+    };
+    const missedAttacks = [];
+    const missed = (coords) => {
+      missedAttacks.push(coords);
+    };
+    const receiveAttack = (x, y) => {
+      if (
+        board[y][x][0] !== undefined &&
+        !Number.isNaN(board[y][x][0]) &&
+        board[y][x][0] !== 'hit'
+      ) {
+        const ship1 = findShip(board[y][x][0]);
+        const position = board[y][x][1];
+        ship1.hit(position);
+        board[y][x][0] = 'hit';
+      } else {
+        board[y][x] = ['miss'];
+        const miss = [y, x];
+        missed(miss);
+      }
+
+      return board[y][x][0];
     };
 
-    return { placeship };
+    return { placeship, receiveAttack };
   };
 
   function newGameboard() {
