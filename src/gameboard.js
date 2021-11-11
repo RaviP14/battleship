@@ -41,10 +41,13 @@ const makeGameboard = (() => {
       });
       return ship;
     };
+    // Record of missed attack coordinates.
     const missedAttacks = [];
+
     const missed = (coords) => {
       missedAttacks.push(coords);
     };
+
     const receiveAttack = (x, y) => {
       if (
         board[y][x][0] !== undefined &&
@@ -64,7 +67,28 @@ const makeGameboard = (() => {
       return board[y][x][0];
     };
 
-    return { placeship, receiveAttack };
+    const missedAttacksHash = {};
+
+    const buildMissedHash = () => {
+      for (let i = 0; i < missedAttacks.length; i += 1) {
+        missedAttacksHash[missedAttacks[i]] = i;
+      }
+    };
+
+    const getMissedAttack = (x, y) => {
+      buildMissedHash();
+      let value = [y, x];
+      const hasValueProperty = Object.prototype.hasOwnProperty.call(
+        missedAttacksHash,
+        value
+      );
+      if (!hasValueProperty) {
+        value = 'not a missed attack';
+      }
+      return value;
+    };
+
+    return { placeship, receiveAttack, getMissedAttack };
   };
 
   function newGameboard() {

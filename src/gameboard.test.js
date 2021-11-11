@@ -19,3 +19,13 @@ test('Attack a ship', () => {
   expect(board1.receiveAttack(1, 3)).toBe('miss');
   expect(board1.receiveAttack(6, 3)).toBe('hit');
 });
+
+test('Missed attacks', () => {
+  const board1 = makeGameboard.newGameboard();
+  board1.placeship(4, 4, 'vertical', 2, 'Cargo');
+  expect(board1.receiveAttack(1, 0)).toBe('miss');
+  expect(board1.getMissedAttack(1, 0)).toStrictEqual([0, 1]);
+  expect(board1.receiveAttack(4, 2)).toBe('miss');
+  expect(board1.getMissedAttack(4, 2)).toStrictEqual([2, 4]);
+  expect(board1.getMissedAttack(1, 1)).toBe('not a missed attack');
+});
