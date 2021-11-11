@@ -88,7 +88,16 @@ const makeGameboard = (() => {
       return value;
     };
 
-    return { placeship, receiveAttack, getMissedAttack };
+    const allSunk = () => {
+      const all = ships.every((ship) => ship.isSunk() === 'sunk');
+      let val = 'not all sunk';
+      if (all) {
+        val = 'all sunk';
+      }
+      return val;
+    };
+
+    return { placeship, receiveAttack, getMissedAttack, allSunk };
   };
 
   function newGameboard() {
