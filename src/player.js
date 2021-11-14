@@ -22,6 +22,7 @@ const makePlayer = (() => {
       const maxi = Math.floor(max);
       return Math.floor(Math.random() * (maxi - mini + 1) + mini);
     };
+    // store all attack coordinates.
     const moves = [];
     const movesHash = {};
 
@@ -61,7 +62,7 @@ const makePlayer = (() => {
       }
       return move;
     };
-
+    // Launch 2nd/3rd attack after success.
     const multipleAttacks = (done, move, target, x, y, num) => {
       let result = done;
       if (move === 'hit') {
@@ -93,14 +94,27 @@ const makePlayer = (() => {
         const place3 = multipleAttacks(done, place2, target, x, y, 2);
         done = place3;
       } else {
-        // look into do while loops probably worth returning a done = 'oops invalid' in else.
-        // then while call attack in another function using do while loop & return that instead.
+        done = 'coordinates taken';
       }
 
       return done;
     };
+    // If coords are taken run attack again until empty coords taken.
+    const makeAttack = (target) => {
+      let answer = '';
+      const result = attack(target);
+      answer = result;
+      while (result === 'coordinates taken') {
+        const result2 = attack(target);
+        if (result2 !== 'coordinates taken') {
+          answer = result2;
+          break;
+        }
+      }
+      return answer;
+    };
 
-    return { attack, playersGamebaoard };
+    return { makeAttack, playersGamebaoard };
   };
 
   function newComputer() {

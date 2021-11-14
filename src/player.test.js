@@ -23,13 +23,13 @@ test('computer test', () => {
   player1.playersGamebaoard.placeship(3, 3, 'horizontal', 2, 'Marina');
 
   computer.playersGamebaoard.placeship(1, 2, 'vertical', 3, 'Enforcer');
-
+  // Mock Math.random value to give testable results.
   const mockMath = Object.create(global.Math);
   mockMath.random = () => 0.5;
   global.Math = mockMath;
 
   expect(player1.attack(computer, 1, 6)).toBe('miss');
-  expect(computer.attack(player1)).toMatchObject({
+  expect(computer.makeAttack(player1)).toMatchObject({
     xVal: 5,
     yVal: 5,
     attacked: 'miss',
@@ -39,7 +39,7 @@ test('computer test', () => {
   mockMath.random = () => 0.3;
   global.Math = mockMath;
 
-  expect(computer.attack(player1)).toMatchObject([
+  expect(computer.makeAttack(player1)).toMatchObject([
     {
       xVal: 3,
       yVal: 3,
