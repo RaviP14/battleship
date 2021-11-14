@@ -37,28 +37,63 @@ const makePlayer = (() => {
       const y1 = y + num;
       const x0 = x - num;
       const y0 = y - num;
+      buildMovesHash();
+      const value1 = [y, x1];
+      const value2 = [y1, x];
+      const value3 = [y, x0];
+      const value4 = [y0, x];
+      const hasValueProperty1 = Object.prototype.hasOwnProperty.call(
+        movesHash,
+        value1
+      );
+      const hasValueProperty2 = Object.prototype.hasOwnProperty.call(
+        movesHash,
+        value2
+      );
+      const hasValueProperty3 = Object.prototype.hasOwnProperty.call(
+        movesHash,
+        value3
+      );
+      const hasValueProperty4 = Object.prototype.hasOwnProperty.call(
+        movesHash,
+        value4
+      );
       const next = {};
       const move = [prevReselt, next];
-      if (Math.random() < 0.25) {
+      if (Math.random() < 0.25 && !hasValueProperty1) {
         next.xVal = x1;
         next.yVal = y;
         next.attacked = target.playersGamebaoard.receiveAttack(x1, y);
         next.moves = num;
-      } else if (Math.random() > 0.25 && Math.random() < 0.5) {
+      } else if (
+        Math.random() > 0.25 &&
+        Math.random() < 0.5 &&
+        !hasValueProperty2
+      ) {
         next.xVal = x;
         next.yVal = y1;
         next.attacked = target.playersGamebaoard.receiveAttack(x, y1);
         next.moves = num;
-      } else if (Math.random() > 0.5 && Math.random() < 0.75) {
+      } else if (
+        Math.random() > 0.5 &&
+        Math.random() < 0.75 &&
+        !hasValueProperty3
+      ) {
         next.xVal = x0;
         next.yVal = y;
         next.attacked = target.playersGamebaoard.receiveAttack(x0, y);
         next.moves = num;
-      } else {
+      } else if (
+        Math.random() > 0.75 &&
+        Math.random() < 1 &&
+        !hasValueProperty4
+      ) {
         next.xVal = x;
         next.yVal = y0;
         next.attacked = target.playersGamebaoard.receiveAttack(x, y0);
         next.moves = num;
+      } else {
+        next.attacked = `attack ${num} unsuccessful`;
       }
       return move;
     };
