@@ -93,7 +93,7 @@ const makePlayer = (() => {
         next.attacked = target.playersGamebaoard.receiveAttack(x, y0);
         next.moves = num;
       } else {
-        next.attacked = `attack ${num} unsuccessful`;
+        next.attacked = `attack ${num} unsuccessful`; // could get x & y from redered table or run attack again afterwards.
       }
       return move;
     };
