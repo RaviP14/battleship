@@ -80,10 +80,26 @@ const interact = (() => {
     const val = convertToIndex(array, colLength);
     return val;
   }
-  // render hit or miss on page function?
+  // render player attack function - hit or miss on page.
+  function playersAttack(attackP, element) {
+    const value = element;
+    console.log(value.textContent);
+    if (attackP === 'hit' && value.textContent === '') {
+      value.textContent = 'X';
+    } else if (attackP === 'miss' && value.textContent === '') {
+      value.textContent = '.';
+    }
+  }
+
+  function renderAttackP(attackP, element) {
+    const attack = playersAttack(attackP, element);
+    return attack;
+  }
+  // render attack for pc attacks (multiple attacks) - event listener needs to listen to this func.
   return {
     getCoords,
     getIndex,
+    renderAttackP,
   };
 })();
 
