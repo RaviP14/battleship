@@ -4,6 +4,9 @@ import elem from './elem';
 
 (() => {
   elem.playGameBtn.addEventListener('click', () => {
+    elem.createGrid('playersGrid', elem.gridPlayer, 10, 10);
+    elem.createGrid('computersGrid', elem.gridComp, 10, 10);
+
     const player1 = makePlayer.newPlayer();
     const computer = makePlayer.newComputer();
 
