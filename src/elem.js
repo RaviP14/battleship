@@ -3,9 +3,10 @@ const elem = (() => {
   const playGameBtn = playGame;
 
   const gridP = document.getElementById('gridDivP');
-  // gridP.style.display = 'none';
+  const gridPlayer = gridP;
+
   const gridC = document.getElementById('gridDivC');
-  // gridC.style.display = 'none';
+  const gridComp = gridC;
 
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
@@ -21,13 +22,16 @@ const elem = (() => {
     container.appendChild(grid);
   }
 
+  function createGrid(gridName, container, rows, columns) {
+    const grid = makeGrid(gridName, container, rows, columns);
+    return grid;
+  }
   // const cGrid = document.getElementById('computersGrid');
-
-  makeGrid('playersGrid', gridP, 10, 10);
-  makeGrid('computersGrid', gridC, 10, 10);
-
   return {
     playGameBtn,
+    createGrid,
+    gridPlayer,
+    gridComp,
   };
 })();
 
