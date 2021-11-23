@@ -8,8 +8,12 @@ const elem = (() => {
   const gridC = document.getElementById('gridDivC');
   const gridComp = gridC;
 
+  const displayM = document.getElementById('mainDisplay');
+  const mainDisplay = displayM;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
+    // show grid - grid.style.display = 'grid'
     grid.style.setProperty('--grid-rows', rows);
     grid.style.setProperty('--grid-cols', columns);
     for (let i = 0; i < rows * columns; i += 1) {
@@ -32,6 +36,7 @@ const elem = (() => {
     createGrid,
     gridPlayer,
     gridComp,
+    mainDisplay,
   };
 })();
 
