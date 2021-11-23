@@ -53,3 +53,26 @@ test('computer test', () => {
     },
   ]);
 });
+
+test('Computer 3 attacks', () => {
+  const player1 = makePlayer.newPlayer('player1');
+  const computer = makePlayer.newComputer();
+
+  player1.playersGamebaoard.placeship(5, 5, 'vertical', 3, 'Enforcer');
+
+  const mockMath = Object.create(global.Math);
+  mockMath.random = () => 0.5;
+  global.Math = mockMath;
+
+  expect(computer.makeAttack(player1)).toMatchObject([
+    [
+      {
+        xVal: 5,
+        yVal: 5,
+        attacked: 'hit',
+      },
+      { xVal: 5, yVal: 6, attacked: 'hit' },
+    ],
+    { xVal: 5, yVal: 7, attacked: 'hit' },
+  ]);
+});
