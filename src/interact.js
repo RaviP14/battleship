@@ -32,8 +32,8 @@ const interact = (() => {
       const attack = array.attacked;
 
       const val1 = y * colLength;
-      const index = val1 + x;
-      finalVal = { index1: index, attacked: attack };
+      const indexs = val1 + x;
+      finalVal = { attack1: { index: indexs, attacked: attack } };
     } else if (isArr === '[object Array]' && isObject === true) {
       const y1 = array[0].yVal;
       const x1 = array[0].xVal;
@@ -47,8 +47,8 @@ const interact = (() => {
       const indexs2 = y2 * colLength + x2;
 
       finalVal = {
-        attack1: { index1: indexs1, attacked: attack1 },
-        attack2: { index2: indexs2, attacked: attack2 },
+        attack1: { index: indexs1, attacked: attack1 },
+        attack2: { index: indexs2, attacked: attack2 },
       };
     } else if (isArr === '[object Array]' && isObject === false) {
       const y1 = array[0][0].yVal;
@@ -68,9 +68,9 @@ const interact = (() => {
       const indexs3 = y3 * colLength + x3;
 
       finalVal = {
-        attack1: { index1: indexs1, attacked: attack1 },
-        attack2: { index2: indexs2, attacked: attack2 },
-        attack3: { index3: indexs3, attacked: attack3 },
+        attack1: { index: indexs1, attacked: attack1 },
+        attack2: { index: indexs2, attacked: attack2 },
+        attack3: { index: indexs3, attacked: attack3 },
       };
     }
     return finalVal;
@@ -83,7 +83,6 @@ const interact = (() => {
   // render player attack function - hit or miss on page.
   function playersAttack(attackP, element) {
     const value = element;
-    console.log(value.textContent);
     if (attackP === 'hit' && value.textContent === '') {
       value.textContent = 'X';
     } else if (attackP === 'miss' && value.textContent === '') {
@@ -95,11 +94,57 @@ const interact = (() => {
     const attack = playersAttack(attackP, element);
     return attack;
   }
+
+  function creatLoop(parent, object) {
+    console.log(object);
+    const children = parent.childNodes;
+    const childrenArray = Array.from(children);
+    for (let i = 0; i < childrenArray.length; i += 1) {
+      if (i === object.index) {
+        const value = childrenArray[i];
+        if (object.attacked === 'hit' && value.textContent === '') {
+          value.textContent = 'X';
+        } else if (object.attacked === 'miss' && value.textContent === '') {
+          value.textContent = '.';
+        }
+      }
+    }
+  }
   // render attack for pc attacks (multiple attacks) - event listener needs to listen to this func.
+  function computersAttack(display, parent, player, pc) {
+    const attacks = pc.makeAttack(player);
+    const values = getIndex(attacks, 10);
+    const totalLength = Object.keys(values).length;
+    console.log(values);
+    if (totalLength === 1) {
+      const obj1 = values.attack1;
+      creatLoop(parent, obj1); // cant pass values object into it
+    } else if (totalLength === 2) {
+      const obj1 = values.attack1;
+      const obj2 = values.attack2;
+      creatLoop(parent, obj1);
+      creatLoop(parent, obj2);
+    } else if (totalLength === 3) {
+      const obj1 = values.attack1;
+      const obj2 = values.attack2;
+      const obj3 = values.attack3;
+      creatLoop(parent, obj1);
+      creatLoop(parent, obj2);
+      creatLoop(parent, obj3);
+    }
+    const display1 = display;
+    display1.textContent = 'Players turn';
+  }
+
+  function renderAttackComputer(display, parent, player, pc) {
+    computersAttack(display, parent, player, pc);
+  }
+
   return {
     getCoords,
     getIndex,
     renderAttackP,
+    renderAttackComputer,
   };
 })();
 
