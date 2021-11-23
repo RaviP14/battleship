@@ -35,11 +35,17 @@ import elem from './elem';
           display.textContent = 'Players attack';
           if (sunk === 'all sunk') {
             display.textContent = 'You Win';
+            // remove event listner
           } else if (attackResult === 'hit') {
             display.textContent = 'Player attack again';
-          } else if (sunk === 'not all sunk') {
+          } else if (sunk === 'not all sunk' && attackResult === 'miss') {
             display.textContent = 'PCs attack';
-            // run pc turn
+            interact.renderAttackComputer(
+              elem.mainDisplay,
+              elem.playersGrid,
+              player1,
+              computer
+            );
           }
         }
       }
