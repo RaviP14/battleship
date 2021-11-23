@@ -11,6 +11,12 @@ const elem = (() => {
   const displayM = document.getElementById('mainDisplay');
   const mainDisplay = displayM;
 
+  const cGrid = document.getElementById('computersGrid');
+  const computersGrid = cGrid;
+
+  const pGrid = document.getElementById('playersGrid');
+  const playersGrid = pGrid;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
     // show grid - grid.style.display = 'grid'
@@ -30,13 +36,15 @@ const elem = (() => {
     const grid = makeGrid(gridName, container, rows, columns);
     return grid;
   }
-  // const cGrid = document.getElementById('computersGrid');
+
   return {
     playGameBtn,
     createGrid,
     gridPlayer,
     gridComp,
     mainDisplay,
+    computersGrid,
+    playersGrid,
   };
 })();
 
