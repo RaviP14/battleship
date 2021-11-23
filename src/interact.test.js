@@ -17,8 +17,10 @@ test('get index from coords 1 hit', () => {
     10
   );
 
-  expect(getIndex).toMatchObject({ index1: 73, attacked: 'hit' });
-  expect(getIndex2).toMatchObject({ index1: 49, attacked: 'missed' });
+  expect(getIndex).toMatchObject({ attack1: { index: 73, attacked: 'hit' } });
+  expect(getIndex2).toMatchObject({
+    attack1: { index: 49, attacked: 'missed' },
+  });
 });
 
 test('get index from coords 2 hits', () => {
@@ -31,8 +33,8 @@ test('get index from coords 2 hits', () => {
   );
 
   expect(getIndex3).toMatchObject({
-    attack1: { index1: 66, attacked: 'hit' },
-    attack2: { index2: 43, attacked: 'missed' },
+    attack1: { index: 66, attacked: 'hit' },
+    attack2: { index: 43, attacked: 'missed' },
   });
 });
 
@@ -48,8 +50,8 @@ test('get index from coords 3 hits', () => {
     10
   );
   expect(getIndex4).toMatchObject({
-    attack1: { index1: 66, attacked: 'hit' },
-    attack2: { index2: 43, attacked: 'missed' },
-    attack3: { index3: 22, attacked: 'missed' },
+    attack1: { index: 66, attacked: 'hit' },
+    attack2: { index: 43, attacked: 'missed' },
+    attack3: { index: 22, attacked: 'missed' },
   });
 });
