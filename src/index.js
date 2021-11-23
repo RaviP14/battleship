@@ -29,6 +29,18 @@ import elem from './elem';
           const yCoord = coord.y;
           const attackResult = player1.attack(computer, xCoord, yCoord);
           interact.renderAttackP(attackResult, child);
+          // check if all pc ships are sunk
+          const sunk = computer.playersGamebaoard.allSunk();
+          const display = elem.mainDisplay;
+          display.textContent = 'Players attack';
+          if (sunk === 'all sunk') {
+            display.textContent = 'You Win';
+          } else if (attackResult === 'hit') {
+            display.textContent = 'Player attack again';
+          } else if (sunk === 'not all sunk') {
+            display.textContent = 'PCs attack';
+            // run pc turn
+          }
         }
       }
     });
