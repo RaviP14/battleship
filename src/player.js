@@ -42,6 +42,7 @@ const makePlayer = (() => {
       const value2 = [y1, x];
       const value3 = [y, x0];
       const value4 = [y0, x];
+      const random = Math.random();
       const hasValueProperty1 = Object.prototype.hasOwnProperty.call(
         movesHash,
         value1
@@ -60,34 +61,22 @@ const makePlayer = (() => {
       );
       const next = {};
       const move = [prevReselt, next];
-      if (Math.random() < 0.25 && !hasValueProperty1) {
+      if (random <= 0.25 && !hasValueProperty1) {
         next.xVal = x1;
         next.yVal = y;
         next.attacked = target.playersGamebaoard.receiveAttack(x1, y);
         next.moves = num;
-      } else if (
-        Math.random() > 0.25 &&
-        Math.random() < 0.5 &&
-        !hasValueProperty2
-      ) {
+      } else if (random > 0.25 && random <= 0.5 && !hasValueProperty2) {
         next.xVal = x;
         next.yVal = y1;
         next.attacked = target.playersGamebaoard.receiveAttack(x, y1);
         next.moves = num;
-      } else if (
-        Math.random() > 0.5 &&
-        Math.random() < 0.75 &&
-        !hasValueProperty3
-      ) {
+      } else if (random > 0.5 && random <= 0.75 && !hasValueProperty3) {
         next.xVal = x0;
         next.yVal = y;
         next.attacked = target.playersGamebaoard.receiveAttack(x0, y);
         next.moves = num;
-      } else if (
-        Math.random() > 0.75 &&
-        Math.random() < 1 &&
-        !hasValueProperty4
-      ) {
+      } else if (random > 0.75 && random <= 1 && !hasValueProperty4) {
         next.xVal = x;
         next.yVal = y0;
         next.attacked = target.playersGamebaoard.receiveAttack(x, y0);
@@ -126,7 +115,11 @@ const makePlayer = (() => {
         done.attacked = place1;
         const place2 = multipleAttacks(done, place1, target, x, y, 1);
         done = place2;
-        const place3 = multipleAttacks(done, place2, target, x, y, 2);
+        let hits = 'miss';
+        if (place2.length === 2 && place2[1].attacked === 'hit') {
+          hits = 'hit';
+        }
+        const place3 = multipleAttacks(done, hits, target, x, y, 2);
         done = place3;
       } else {
         done = 'coordinates taken';
