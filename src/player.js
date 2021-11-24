@@ -31,12 +31,25 @@ const makePlayer = (() => {
         movesHash[moves[i]] = i;
       }
     };
-
+    const checkNum = (num) => {
+      let newNum = num;
+      if (newNum > 9) {
+        newNum = getRandomNumber(0, 9);
+      } else if (newNum < 0) {
+        newNum = getRandomNumber(0, 9);
+      }
+      return newNum;
+    };
     const attackAgain = (prevReselt, target, x, y, num) => {
-      const x1 = x + num;
-      const y1 = y + num;
-      const x0 = x - num;
-      const y0 = y - num;
+      let x1 = x + num;
+      let y1 = y + num;
+      let x0 = x - num;
+      let y0 = y - num;
+      // need to check values if > 9 or < 0
+      x1 = checkNum(x1);
+      y1 = checkNum(y1);
+      x0 = checkNum(x0);
+      y0 = checkNum(y0);
       buildMovesHash();
       const value1 = [y, x1];
       const value2 = [y1, x];
@@ -82,8 +95,23 @@ const makePlayer = (() => {
         next.attacked = target.playersGamebaoard.receiveAttack(x, y0);
         next.moves = num;
       } else {
-        next.attacked = `attack ${num} unsuccessful`; // could get x & y from redered table or run attack again afterwards.
+        const newX = getRandomNumber(0, 9);
+        const newY = getRandomNumber(0, 9);
+        const value5 = [newY, newX];
+        const hasValueProperty5 = Object.prototype.hasOwnProperty.call(
+          movesHash,
+          value5
+        );
+        if (!hasValueProperty5) {
+          next.xVal = newX;
+          next.yVal = newY;
+          next.attacked = target.playersGamebaoard.receiveAttack(newX, newY);
+          next.moves = num;
+        } else {
+          next.attacked = `attack ${num} unsuccessful`;
+        }
       }
+      console.log(move);
       return move;
     };
     // Launch 2nd/3rd attack after success.
