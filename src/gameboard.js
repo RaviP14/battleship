@@ -52,7 +52,8 @@ const makeGameboard = (() => {
       if (
         board[y][x][0] !== undefined &&
         !Number.isNaN(board[y][x][0]) &&
-        board[y][x][0] !== 'hit'
+        board[y][x][0] !== 'hit' &&
+        board[y][x][0] !== 'miss'
       ) {
         const ship1 = findShip(board[y][x][0]);
         const position = board[y][x][1];
