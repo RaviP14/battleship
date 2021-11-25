@@ -2,6 +2,10 @@ const elem = (() => {
   const playGame = document.getElementById('playGame');
   const playGameBtn = playGame;
 
+  const playAgain = document.getElementById('playAgain');
+  const playAgainBtn = playAgain;
+  playAgainBtn.style.display = 'none';
+
   const gridP = document.getElementById('gridDivP');
   const gridPlayer = gridP;
   gridPlayer.style.display = 'none';
@@ -41,6 +45,7 @@ const elem = (() => {
 
   return {
     playGameBtn,
+    playAgainBtn,
     createGrid,
     gridPlayer,
     gridComp,
