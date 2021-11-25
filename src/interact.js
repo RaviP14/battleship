@@ -1,3 +1,5 @@
+import elem from './elem';
+
 const interact = (() => {
   function convertToCoords(index, gridColLength) {
     const rowPosition = Math.floor(index / gridColLength);
@@ -94,7 +96,7 @@ const interact = (() => {
     const attack = playersAttack(attackP, element);
     return attack;
   }
-
+  // Render hit or miss on html board
   function creatLoop(parent, object) {
     console.log(object);
     const children = parent.childNodes;
@@ -110,7 +112,7 @@ const interact = (() => {
       }
     }
   }
-  // render attack for pc attacks (multiple attacks) - event listener needs to listen to this func.
+  // Start render to attacks for pc & multiple attacks.
   function computersAttack(display, parent, player, pc) {
     const attacks = pc.makeAttack(player);
     const values = getIndex(attacks, 10);
@@ -118,7 +120,7 @@ const interact = (() => {
     console.log(values);
     if (totalLength === 1) {
       const obj1 = values.attack1;
-      creatLoop(parent, obj1); // cant pass values object into it
+      creatLoop(parent, obj1);
     } else if (totalLength === 2) {
       const obj1 = values.attack1;
       const obj2 = values.attack2;
@@ -132,19 +134,36 @@ const interact = (() => {
       creatLoop(parent, obj2);
       creatLoop(parent, obj3);
     }
+    const sunk = player.playersGamebaoard.allSunk();
     const display1 = display;
-    display1.textContent = 'Players turn';
+    if (sunk === 'all sunk') {
+      display1.textContent = 'You lost :(';
+    } else if (sunk === 'not all sunk') {
+      display1.textContent = 'Players turn';
+    }
+    return sunk;
   }
 
   function renderAttackComputer(display, parent, player, pc) {
     computersAttack(display, parent, player, pc);
   }
 
+  function removeGrids() {
+    elem.computersGrid.removeChild(elem.computersGrid.firstChild);
+    elem.playersGrid.removeChild(elem.playersGrid.firstChild);
+    elem.gridComp.style.display = 'none';
+    elem.gridPlayer.style.display = 'none';
+  }
+
+  function deleteGrids() {
+    removeGrids();
+  }
   return {
     getCoords,
     getIndex,
     renderAttackP,
     renderAttackComputer,
+    deleteGrids,
   };
 })();
 
