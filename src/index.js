@@ -4,6 +4,9 @@ import elem from './elem';
 
 (() => {
   elem.playGameBtn.addEventListener('click', () => {
+    elem.gridComp.style.display = 'block';
+    elem.gridPlayer.style.display = 'block';
+
     elem.createGrid('playersGrid', elem.gridPlayer, 10, 10);
     elem.createGrid('computersGrid', elem.gridComp, 10, 10);
 
@@ -35,17 +38,20 @@ import elem from './elem';
           display.textContent = 'Players attack';
           if (sunk === 'all sunk') {
             display.textContent = 'You Win';
-            // remove event listner
+            interact.deleteGrids();
           } else if (attackResult === 'hit') {
             display.textContent = 'Player attack again';
           } else if (sunk === 'not all sunk' && attackResult === 'miss') {
             display.textContent = 'PCs attack';
-            interact.renderAttackComputer(
+            const pcAttacks = interact.renderAttackComputer(
               elem.mainDisplay,
               elem.playersGrid,
               player1,
               computer
             );
+            if (pcAttacks === 'all sunk') {
+              interact.deleteGrids();
+            }
           }
         }
       }
