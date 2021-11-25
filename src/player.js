@@ -111,7 +111,6 @@ const makePlayer = (() => {
           next.attacked = `attack ${num} unsuccessful`;
         }
       }
-      console.log(move);
       return move;
     };
     // Launch 2nd/3rd attack after success.

@@ -98,7 +98,6 @@ const interact = (() => {
   }
   // Render hit or miss on html board
   function creatLoop(parent, object) {
-    console.log(object);
     const children = parent.childNodes;
     const childrenArray = Array.from(children);
     for (let i = 0; i < childrenArray.length; i += 1) {
@@ -117,7 +116,6 @@ const interact = (() => {
     const attacks = pc.makeAttack(player);
     const values = getIndex(attacks, 10);
     const totalLength = Object.keys(values).length;
-    console.log(values);
     if (totalLength === 1) {
       const obj1 = values.attack1;
       creatLoop(parent, obj1);
