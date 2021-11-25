@@ -86,9 +86,9 @@ const interact = (() => {
   function playersAttack(attackP, element) {
     const value = element;
     if (attackP === 'hit' && value.textContent === '') {
-      value.textContent = 'X';
+      value.style.backgroundColor = '#800000';
     } else if (attackP === 'miss' && value.textContent === '') {
-      value.textContent = '.';
+      value.style.backgroundColor = '#006994';
     }
   }
 
@@ -104,9 +104,9 @@ const interact = (() => {
       if (i === object.index) {
         const value = childrenArray[i];
         if (object.attacked === 'hit' && value.textContent === '') {
-          value.textContent = 'X';
+          value.style.backgroundColor = '#800000';
         } else if (object.attacked === 'miss' && value.textContent === '') {
-          value.textContent = '.';
+          value.style.backgroundColor = '#006994';
         }
       }
     }
