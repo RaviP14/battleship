@@ -39,22 +39,24 @@ import elem from './elem';
           if (sunk === 'all sunk') {
             display.textContent = 'You Win';
             interact.deleteGrids();
+            elem.playGameBtn.style.display = 'none';
+            elem.playAgainBtn.style.display = 'block';
           } else if (attackResult === 'hit') {
             display.textContent = 'Player attack again';
           } else if (sunk === 'not all sunk' && attackResult === 'miss') {
             display.textContent = 'PCs attack';
-            const pcAttacks = interact.renderAttackComputer(
+            interact.renderAttackComputer(
               elem.mainDisplay,
               elem.playersGrid,
               player1,
               computer
             );
-            if (pcAttacks === 'all sunk') {
-              interact.deleteGrids();
-            }
           }
         }
       }
     });
+  });
+  elem.playAgainBtn.addEventListener('click', () => {
+    window.location.reload();
   });
 })();
