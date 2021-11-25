@@ -111,6 +111,17 @@ const interact = (() => {
       }
     }
   }
+
+  function removeGrids() {
+    elem.computersGrid.removeChild(elem.computersGrid.firstChild);
+    elem.playersGrid.removeChild(elem.playersGrid.firstChild);
+    elem.gridComp.style.display = 'none';
+    elem.gridPlayer.style.display = 'none';
+  }
+
+  function deleteGrids() {
+    removeGrids();
+  }
   // Start render to attacks for pc & multiple attacks.
   function computersAttack(display, parent, player, pc) {
     const attacks = pc.makeAttack(player);
@@ -136,26 +147,18 @@ const interact = (() => {
     const display1 = display;
     if (sunk === 'all sunk') {
       display1.textContent = 'You lost :(';
+      deleteGrids();
+      elem.playGameBtn.style.display = 'none';
+      elem.playAgainBtn.style.display = 'block';
     } else if (sunk === 'not all sunk') {
       display1.textContent = 'Players turn';
     }
-    return sunk;
   }
 
   function renderAttackComputer(display, parent, player, pc) {
     computersAttack(display, parent, player, pc);
   }
 
-  function removeGrids() {
-    elem.computersGrid.removeChild(elem.computersGrid.firstChild);
-    elem.playersGrid.removeChild(elem.playersGrid.firstChild);
-    elem.gridComp.style.display = 'none';
-    elem.gridPlayer.style.display = 'none';
-  }
-
-  function deleteGrids() {
-    removeGrids();
-  }
   return {
     getCoords,
     getIndex,
