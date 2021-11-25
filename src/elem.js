@@ -4,9 +4,11 @@ const elem = (() => {
 
   const gridP = document.getElementById('gridDivP');
   const gridPlayer = gridP;
+  gridPlayer.style.display = 'none';
 
   const gridC = document.getElementById('gridDivC');
   const gridComp = gridC;
+  gridComp.style.display = 'none';
 
   const displayM = document.getElementById('mainDisplay');
   const mainDisplay = displayM;
