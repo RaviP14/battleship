@@ -17,9 +17,7 @@ import elem from './elem';
     player1.playersGamebaoard.placeship(9, 4, 'vertical', 4, 'attack ship');
     player1.playersGamebaoard.placeship(1, 1, 'horizontal', 3, 'submarine');
 
-    computer.playersGamebaoard.placeship(1, 1, 'vertical', 2, 'trooper');
-    computer.playersGamebaoard.placeship(6, 5, 'horizontal', 4, 'attack ship');
-    computer.playersGamebaoard.placeship(0, 3, 'vertical', 3, 'submarine');
+    interact.pcChooseShips(computer);
 
     document.addEventListener('click', (e) => {
       if (e.target.matches('.gridSquare')) {
