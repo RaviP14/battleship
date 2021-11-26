@@ -87,8 +87,10 @@ const interact = (() => {
     const value = element;
     if (attackP === 'hit' && value.textContent === '') {
       value.style.backgroundColor = '#800000';
+      value.textContent = 'X';
     } else if (attackP === 'miss' && value.textContent === '') {
       value.style.backgroundColor = '#006994';
+      value.textContent = '.';
     }
   }
 
@@ -105,8 +107,10 @@ const interact = (() => {
         const value = childrenArray[i];
         if (object.attacked === 'hit' && value.textContent === '') {
           value.style.backgroundColor = '#800000';
+          value.textContent = 'X';
         } else if (object.attacked === 'miss' && value.textContent === '') {
           value.style.backgroundColor = '#006994';
+          value.textContent = '.';
         }
       }
     }
@@ -159,12 +163,75 @@ const interact = (() => {
     computersAttack(display, parent, player, pc);
   }
 
+  function chooseShipsPc(computer) {
+    const random = Math.random();
+    if (random <= 0.2) {
+      computer.playersGamebaoard.placeship(1, 1, 'vertical', 2, 'trooper');
+      computer.playersGamebaoard.placeship(7, 8, 'horizontal', 2, 'trooper');
+      computer.playersGamebaoard.placeship(
+        6,
+        5,
+        'horizontal',
+        4,
+        'attack ship'
+      );
+      computer.playersGamebaoard.placeship(0, 3, 'vertical', 3, 'submarine');
+      computer.playersGamebaoard.placeship(0, 9, 'vertical', 1, 'stealth ship');
+    } else if (random > 0.2 && random <= 0.4) {
+      computer.playersGamebaoard.placeship(9, 8, 'vertical', 2, 'trooper');
+      computer.playersGamebaoard.placeship(0, 4, 'horizontal', 2, 'trooper');
+      computer.playersGamebaoard.placeship(
+        5,
+        0,
+        'horizontal',
+        4,
+        'attack ship'
+      );
+      computer.playersGamebaoard.placeship(2, 4, 'vertical', 3, 'submarine');
+      computer.playersGamebaoard.placeship(3, 5, 'vertical', 1, 'stealth ship');
+    } else if (random > 0.4 && random <= 0.6) {
+      computer.playersGamebaoard.placeship(8, 1, 'vertical', 2, 'trooper');
+      computer.playersGamebaoard.placeship(6, 8, 'horizontal', 2, 'trooper');
+      computer.playersGamebaoard.placeship(3, 4, 'vertical', 4, 'attack ship');
+      computer.playersGamebaoard.placeship(1, 9, 'horizontal', 3, 'submarine');
+      computer.playersGamebaoard.placeship(0, 5, 'vertical', 1, 'stealth ship');
+    } else if (random > 0.6 && random <= 0.8) {
+      computer.playersGamebaoard.placeship(6, 2, 'vertical', 2, 'trooper');
+      computer.playersGamebaoard.placeship(8, 0, 'vertical', 2, 'trooper');
+      computer.playersGamebaoard.placeship(
+        2,
+        5,
+        'horizontal',
+        4,
+        'attack ship'
+      );
+      computer.playersGamebaoard.placeship(0, 3, 'horizontal', 3, 'submarine');
+      computer.playersGamebaoard.placeship(4, 4, 'vertical', 1, 'stealth ship');
+    } else if (random > 0.8 && random <= 1) {
+      computer.playersGamebaoard.placeship(0, 0, 'vertical', 2, 'trooper');
+      computer.playersGamebaoard.placeship(8, 8, 'horizontal', 2, 'trooper');
+      computer.playersGamebaoard.placeship(
+        3,
+        9,
+        'horizontal',
+        4,
+        'attack ship'
+      );
+      computer.playersGamebaoard.placeship(5, 5, 'vertical', 3, 'submarine');
+      computer.playersGamebaoard.placeship(7, 3, 'vertical', 1, 'stealth ship');
+    }
+  }
+
+  function pcChooseShips(computer) {
+    chooseShipsPc(computer);
+  }
   return {
     getCoords,
     getIndex,
     renderAttackP,
     renderAttackComputer,
     deleteGrids,
+    pcChooseShips,
   };
 })();
 
