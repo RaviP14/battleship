@@ -16,7 +16,7 @@ import elem from './elem';
     player1.playersGamebaoard.placeship(2, 3, 'vertical', 2, 'trooper');
     player1.playersGamebaoard.placeship(9, 4, 'vertical', 4, 'attack ship');
     player1.playersGamebaoard.placeship(1, 1, 'horizontal', 3, 'submarine');
-
+    // Adds Computers ships
     interact.pcChooseShips(computer);
 
     document.addEventListener('click', (e) => {
@@ -30,7 +30,7 @@ import elem from './elem';
           const yCoord = coord.y;
           const attackResult = player1.attack(computer, xCoord, yCoord);
           interact.renderAttackP(attackResult, child);
-          // check if all pc ships are sunk
+          // requires different ship names.
           const sunk = computer.playersGamebaoard.allSunk();
           const display = elem.mainDisplay;
           display.textContent = 'Players attack';
