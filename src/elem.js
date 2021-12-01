@@ -23,6 +23,12 @@ const elem = (() => {
   const pGrid = document.getElementById('playersGrid');
   const playersGrid = pGrid;
 
+  const switchP = document.getElementById('switchP');
+  const switchOrientation = switchP;
+
+  const subShip = document.getElementById('submarine');
+  const submarine = subShip;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
     // show grid - grid.style.display = 'grid'
@@ -52,6 +58,8 @@ const elem = (() => {
     mainDisplay,
     computersGrid,
     playersGrid,
+    switchOrientation,
+    submarine,
   };
 })();
 
