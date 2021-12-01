@@ -226,6 +226,115 @@ const interact = (() => {
   function pcChooseShips(computer) {
     chooseShipsPc(computer);
   }
+
+  function pChooseShipPosition(colour, child, parent, index, posType, length) {
+    const numbers = index.toString().slice().split('');
+    const actualNumbers = numbers.map(Number);
+    const child1 = child;
+    if (posType === 'horizontal') {
+      if (
+        (length === 2 && actualNumbers[1] <= 8) ||
+        (length === 2 && actualNumbers.length === 1 && actualNumbers[0] <= 8)
+      ) {
+        child1.style.backgroundColor = colour;
+        const index2 = index + 1;
+        const array = Array.from(parent.children);
+        for (let i = 0; i < array.length; i += 1) {
+          if (i === index2) {
+            array[i].style.backgroundColor = colour;
+          }
+        }
+      } else if (
+        (length === 3 && actualNumbers[1] <= 7) ||
+        (length === 3 && actualNumbers.length === 1 && actualNumbers[0] <= 7)
+      ) {
+        child1.style.backgroundColor = colour;
+        const index2 = index + 1;
+        const index3 = index + 2;
+        const array = Array.from(parent.children);
+        for (let i = 0; i < array.length; i += 1) {
+          if (i === index2) {
+            array[i].style.backgroundColor = colour;
+          } else if (i === index3) {
+            array[i].style.backgroundColor = colour;
+          }
+        }
+      } else if (
+        (length === 4 && actualNumbers[1] <= 6) ||
+        (length === 4 && actualNumbers.length === 1 && actualNumbers[0] <= 6)
+      ) {
+        child1.style.backgroundColor = colour;
+        const index2 = index + 1;
+        const index3 = index + 2;
+        const index4 = index + 3;
+        const array = Array.from(parent.children);
+        for (let i = 0; i < array.length; i += 1) {
+          if (i === index2) {
+            array[i].style.backgroundColor = colour;
+          } else if (i === index3) {
+            array[i].style.backgroundColor = colour;
+          } else if (i === index4) {
+            array[i].style.backgroundColor = colour;
+          }
+        }
+      } else if (length === 1) {
+        child1.style.backgroundColor = colour;
+      }
+    } else if (posType === 'vertical') {
+      if (
+        (length === 2 && actualNumbers[0] <= 8) ||
+        (length === 2 && actualNumbers.length === 1 && actualNumbers[0] <= 9)
+      ) {
+        child1.style.backgroundColor = colour;
+        const index2 = index + 10;
+        const array = Array.from(parent.children);
+        for (let i = 0; i < array.length; i += 1) {
+          if (i === index2) {
+            array[i].style.backgroundColor = colour;
+          }
+        }
+      } else if (
+        (length === 3 && actualNumbers[0] <= 7) ||
+        (length === 3 && actualNumbers.length === 1 && actualNumbers[0] <= 9)
+      ) {
+        child1.style.backgroundColor = colour;
+        const index2 = index + 10;
+        const index3 = index + 20;
+        const array = Array.from(parent.children);
+        for (let i = 0; i < array.length; i += 1) {
+          if (i === index2) {
+            array[i].style.backgroundColor = colour;
+          } else if (i === index3) {
+            array[i].style.backgroundColor = colour;
+          }
+        }
+      } else if (
+        (length === 4 && actualNumbers[0] <= 6) ||
+        (length === 4 && actualNumbers.length === 1 && actualNumbers[0] <= 9)
+      ) {
+        child1.style.backgroundColor = colour;
+        const index2 = index + 10;
+        const index3 = index + 20;
+        const index4 = index + 30;
+        const array = Array.from(parent.children);
+        for (let i = 0; i < array.length; i += 1) {
+          if (i === index2) {
+            array[i].style.backgroundColor = colour;
+          } else if (i === index3) {
+            array[i].style.backgroundColor = colour;
+          } else if (i === index4) {
+            array[i].style.backgroundColor = colour;
+          }
+        }
+      } else if (length === 1) {
+        child1.style.backgroundColor = colour;
+      }
+    }
+  }
+
+  function chooseShipPos(colour, child, parent, index, posType, length) {
+    pChooseShipPosition(colour, child, parent, index, posType, length);
+  }
   return {
     getCoords,
     getIndex,
@@ -233,6 +342,7 @@ const interact = (() => {
     renderAttackComputer,
     deleteGrids,
     pcChooseShips,
+    chooseShipPos,
   };
 })();
 
