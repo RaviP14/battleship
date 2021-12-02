@@ -3,16 +3,20 @@ import interact from './interact';
 import elem from './elem';
 
 (() => {
+  elem.createGrid('playersGrid', elem.gridPlayer, 10, 10);
+  const player1 = makePlayer.newPlayer();
+  elem.gridPlayer.style.display = 'block';
+
+  elem.submarine.addEventListener('click', interact.clickShip);
+
   elem.playGameBtn.addEventListener('click', () => {
     elem.gridComp.style.display = 'block';
     elem.gridPlayer.style.display = 'block';
 
-    elem.createGrid('playersGrid', elem.gridPlayer, 10, 10);
     elem.createGrid('computersGrid', elem.gridComp, 10, 10);
 
-    const player1 = makePlayer.newPlayer();
     const computer = makePlayer.newComputer();
-
+    // remove player placeships when above code is complete.
     player1.playersGamebaoard.placeship(2, 3, 'vertical', 2, 'trooper');
     player1.playersGamebaoard.placeship(9, 4, 'vertical', 4, 'attack ship');
     player1.playersGamebaoard.placeship(1, 1, 'horizontal', 3, 'submarine');
