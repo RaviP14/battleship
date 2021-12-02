@@ -335,6 +335,73 @@ const interact = (() => {
   function chooseShipPos(colour, child, parent, index, posType, length) {
     pChooseShipPosition(colour, child, parent, index, posType, length);
   }
+
+  function selectGridIndex(colour, posType, length, e) {
+    if (e.target.matches('.gridSquare')) {
+      const child = e.target;
+      const parent = child.parentNode;
+      const index = Array.prototype.indexOf.call(parent.children, child);
+      chooseShipPos(colour, child, parent, index, posType, length);
+    }
+  }
+
+  function markIndex(colour, posType, length, name, e, controller) {
+    if (e.target.matches('.gridSquare')) {
+      const child = e.target;
+      const parent = child.parentNode;
+      const index = Array.prototype.indexOf.call(parent.children, child);
+      const element = document.getElementById(name);
+      chooseShipPos(colour, child, parent, index, posType, length);
+      controller.abort();
+      element.removeEventListener('click', interact.clickShip);
+      element.style.backgroundColor = '#d3d3d3';
+      // remove element hover
+      // convert index to coords
+      // player1.playersGamebaoard.placeship(2, 3, posType, Length, name)
+    }
+  }
+
+  function selectShip(shipName, posType, length, controller) {
+    document.addEventListener(
+      'mouseover',
+      (e) => {
+        const colour = '#d3d3d3';
+        selectGridIndex(colour, posType, length, e);
+      },
+      { signal: controller.signal }
+    );
+
+    document.addEventListener(
+      'mouseout',
+      (e) => {
+        const colour = '#ffffff';
+        selectGridIndex(colour, posType, length, e);
+      },
+      { signal: controller.signal }
+    );
+    document.addEventListener(
+      'mousedown',
+      (e) => {
+        const colour = '#d3d3d3';
+        markIndex(colour, posType, length, shipName, e, controller);
+      },
+      { signal: controller.signal }
+    );
+  }
+
+  function shipClicked(e) {
+    // abort old controller after each new one.
+    const controller = new AbortController();
+    const shipName = e.target.id;
+    const posType = e.target.value;
+    const lengths = e.target.getAttribute('data-key');
+    const length = parseInt(lengths, 10);
+    selectShip(shipName, posType, length, controller);
+  }
+
+  function clickShip(e) {
+    shipClicked(e);
+  }
   return {
     getCoords,
     getIndex,
@@ -343,6 +410,7 @@ const interact = (() => {
     deleteGrids,
     pcChooseShips,
     chooseShipPos,
+    clickShip,
   };
 })();
 
