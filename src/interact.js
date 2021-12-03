@@ -535,10 +535,26 @@ const interact = (() => {
       { signal: controller.signal }
     );
   }
+  const abortMouseEvents = (controller) => {
+    function abortController() {
+      controller.abort();
+    }
+    function abort() {
+      abortController();
+    }
+
+    return {
+      abort,
+    };
+  };
+
+  const abortArray = [];
 
   function shipClicked(e, player, shipController) {
     // abort old controller after each new one.
     const controller = new AbortController();
+    const abort1 = abortMouseEvents(controller);
+    abortArray.push(abort1);
     const shipName = e.target.id;
     const posType = e.target.value;
     const lengths = e.target.getAttribute('data-key');
@@ -558,6 +574,7 @@ const interact = (() => {
     pcChooseShips,
     chooseShipPos,
     clickShip,
+    abortArray,
   };
 })();
 
