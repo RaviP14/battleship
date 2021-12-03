@@ -7,15 +7,32 @@ import elem from './elem';
   const player1 = makePlayer.newPlayer();
   elem.gridPlayer.style.display = 'block';
 
-  const submarineontroller = new AbortController();
+  const submarineController = new AbortController();
   elem.submarine.addEventListener(
     'click',
     (e) => {
-      interact.clickShip(e, player1, submarineontroller);
+      if (interact.abortArray.length === 1) {
+        interact.abortArray[0].abort();
+        interact.abortArray = [];
+      }
+      interact.clickShip(e, player1, submarineController);
     },
-    { signal: submarineontroller.signal }
+    { signal: submarineController.signal }
   );
 
+  const attackshipController = new AbortController();
+  elem.attackship.addEventListener(
+    'click',
+    (e) => {
+      // need to remove other ship mouse event listeners...
+      if (interact.abortArray.length === 1) {
+        interact.abortArray[0].abort();
+        interact.abortArray = [];
+      }
+      interact.clickShip(e, player1, attackshipController);
+    },
+    { signal: attackshipController.signal }
+  );
   elem.playGameBtn.addEventListener('click', () => {
     elem.gridComp.style.display = 'block';
     elem.gridPlayer.style.display = 'block';
