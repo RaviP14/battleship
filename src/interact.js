@@ -231,109 +231,212 @@ const interact = (() => {
     const numbers = index.toString().slice().split('');
     const actualNumbers = numbers.map(Number);
     const child1 = child;
+    let clicked;
+    const colourCheck = child.style.backgroundColor;
     if (posType === 'horizontal') {
       if (
-        (length === 2 && actualNumbers[1] <= 8) ||
-        (length === 2 && actualNumbers.length === 1 && actualNumbers[0] <= 8)
+        (length === 2 &&
+          actualNumbers[1] <= 8 &&
+          colourCheck !== 'rgb(34, 139, 34)') ||
+        (length === 2 &&
+          actualNumbers.length === 1 &&
+          actualNumbers[0] <= 8 &&
+          colourCheck !== 'rgb(34, 139, 34)')
       ) {
-        child1.style.backgroundColor = colour;
         const index2 = index + 1;
         const array = Array.from(parent.children);
         for (let i = 0; i < array.length; i += 1) {
-          if (i === index2) {
-            array[i].style.backgroundColor = colour;
+          if (array[i].style.backgroundColor !== 'rgb(34, 139, 34)') {
+            if (
+              i === index &&
+              array[index2].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              child1.style.backgroundColor = colour;
+              clicked = 'yes';
+            } else if (i === index2) {
+              array[i].style.backgroundColor = colour;
+            }
           }
         }
       } else if (
-        (length === 3 && actualNumbers[1] <= 7) ||
-        (length === 3 && actualNumbers.length === 1 && actualNumbers[0] <= 7)
+        (length === 3 &&
+          actualNumbers[1] <= 7 &&
+          colourCheck !== 'rgb(34, 139, 34)') ||
+        (length === 3 &&
+          actualNumbers.length === 1 &&
+          actualNumbers[0] <= 7 &&
+          colourCheck !== 'rgb(34, 139, 34)')
       ) {
-        child1.style.backgroundColor = colour;
         const index2 = index + 1;
         const index3 = index + 2;
         const array = Array.from(parent.children);
         for (let i = 0; i < array.length; i += 1) {
-          if (i === index2) {
-            array[i].style.backgroundColor = colour;
-          } else if (i === index3) {
-            array[i].style.backgroundColor = colour;
+          if (array[i].style.backgroundColor !== 'rgb(34, 139, 34)') {
+            if (
+              i === index &&
+              array[index2].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              child1.style.backgroundColor = colour;
+              clicked = 'yes';
+            } else if (
+              i === index2 &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              array[i].style.backgroundColor = colour;
+            } else if (i === index3) {
+              array[i].style.backgroundColor = colour;
+            }
           }
         }
       } else if (
-        (length === 4 && actualNumbers[1] <= 6) ||
-        (length === 4 && actualNumbers.length === 1 && actualNumbers[0] <= 6)
+        (length === 4 &&
+          actualNumbers[1] <= 6 &&
+          colourCheck !== 'rgb(34, 139, 34)') ||
+        (length === 4 &&
+          actualNumbers.length === 1 &&
+          actualNumbers[0] <= 6 &&
+          colourCheck !== 'rgb(34, 139, 34)')
       ) {
-        child1.style.backgroundColor = colour;
         const index2 = index + 1;
         const index3 = index + 2;
         const index4 = index + 3;
         const array = Array.from(parent.children);
         for (let i = 0; i < array.length; i += 1) {
-          if (i === index2) {
-            array[i].style.backgroundColor = colour;
-          } else if (i === index3) {
-            array[i].style.backgroundColor = colour;
-          } else if (i === index4) {
-            array[i].style.backgroundColor = colour;
+          if (array[i].style.backgroundColor !== 'rgb(34, 139, 34)') {
+            if (
+              i === index &&
+              array[index2].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index4].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              child1.style.backgroundColor = colour;
+              clicked = 'yes';
+            } else if (
+              i === index2 &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index4].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              array[i].style.backgroundColor = colour;
+            } else if (
+              i === index3 &&
+              array[index4].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              array[i].style.backgroundColor = colour;
+            } else if (i === index4) {
+              array[i].style.backgroundColor = colour;
+            }
           }
         }
-      } else if (length === 1) {
+      } else if (length === 1 && colourCheck !== 'rgb(34, 139, 34)') {
         child1.style.backgroundColor = colour;
+        clicked = 'yes';
       }
     } else if (posType === 'vertical') {
       if (
-        (length === 2 && actualNumbers[0] <= 8) ||
-        (length === 2 && actualNumbers.length === 1 && actualNumbers[0] <= 9)
+        (length === 2 &&
+          actualNumbers[0] <= 8 &&
+          colourCheck !== 'rgb(34, 139, 34)') ||
+        (length === 2 &&
+          actualNumbers.length === 1 &&
+          actualNumbers[0] <= 9 &&
+          colourCheck !== 'rgb(34, 139, 34)')
       ) {
-        child1.style.backgroundColor = colour;
         const index2 = index + 10;
         const array = Array.from(parent.children);
         for (let i = 0; i < array.length; i += 1) {
-          if (i === index2) {
-            array[i].style.backgroundColor = colour;
+          if (array[i].style.backgroundColor !== 'rgb(34, 139, 34)') {
+            if (
+              i === index &&
+              array[index2].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              child1.style.backgroundColor = colour;
+              clicked = 'yes';
+            } else if (i === index2) {
+              array[i].style.backgroundColor = colour;
+            }
           }
         }
       } else if (
-        (length === 3 && actualNumbers[0] <= 7) ||
-        (length === 3 && actualNumbers.length === 1 && actualNumbers[0] <= 9)
+        (length === 3 &&
+          actualNumbers[0] <= 7 &&
+          colourCheck !== 'rgb(34, 139, 34)') ||
+        (length === 3 &&
+          actualNumbers.length === 1 &&
+          actualNumbers[0] <= 9 &&
+          colourCheck !== 'rgb(34, 139, 34)')
       ) {
-        child1.style.backgroundColor = colour;
         const index2 = index + 10;
         const index3 = index + 20;
         const array = Array.from(parent.children);
         for (let i = 0; i < array.length; i += 1) {
-          if (i === index2) {
-            array[i].style.backgroundColor = colour;
-          } else if (i === index3) {
-            array[i].style.backgroundColor = colour;
+          if (array[i].style.backgroundColor !== 'rgb(34, 139, 34)') {
+            if (
+              i === index &&
+              array[index2].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              child1.style.backgroundColor = colour;
+              clicked = 'yes';
+            } else if (
+              i === index2 &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              array[i].style.backgroundColor = colour;
+            } else if (i === index3) {
+              array[i].style.backgroundColor = colour;
+            }
           }
         }
       } else if (
-        (length === 4 && actualNumbers[0] <= 6) ||
-        (length === 4 && actualNumbers.length === 1 && actualNumbers[0] <= 9)
+        (length === 4 &&
+          actualNumbers[0] <= 6 &&
+          colourCheck !== 'rgb(34, 139, 34)') ||
+        (length === 4 &&
+          actualNumbers.length === 1 &&
+          actualNumbers[0] <= 9 &&
+          colourCheck !== 'rgb(34, 139, 34)')
       ) {
-        child1.style.backgroundColor = colour;
         const index2 = index + 10;
         const index3 = index + 20;
         const index4 = index + 30;
         const array = Array.from(parent.children);
         for (let i = 0; i < array.length; i += 1) {
-          if (i === index2) {
-            array[i].style.backgroundColor = colour;
-          } else if (i === index3) {
-            array[i].style.backgroundColor = colour;
-          } else if (i === index4) {
-            array[i].style.backgroundColor = colour;
+          if (array[i].style.backgroundColor !== 'rgb(34, 139, 34)') {
+            if (
+              i === index &&
+              array[index2].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index4].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              child1.style.backgroundColor = colour;
+              clicked = 'yes';
+            } else if (
+              i === index2 &&
+              array[index3].style.backgroundColor !== 'rgb(34, 139, 34)' &&
+              array[index4].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              array[i].style.backgroundColor = colour;
+            } else if (
+              i === index3 &&
+              array[index4].style.backgroundColor !== 'rgb(34, 139, 34)'
+            ) {
+              array[i].style.backgroundColor = colour;
+            } else if (i === index4) {
+              array[i].style.backgroundColor = colour;
+            }
           }
         }
-      } else if (length === 1) {
+      } else if (length === 1 && colourCheck !== 'rgb(34, 139, 34)') {
         child1.style.backgroundColor = colour;
+        clicked = 'yes';
       }
     }
+    return clicked;
   }
 
   function chooseShipPos(colour, child, parent, index, posType, length) {
-    pChooseShipPosition(colour, child, parent, index, posType, length);
+    return pChooseShipPosition(colour, child, parent, index, posType, length);
   }
 
   function selectGridIndex(colour, posType, length, e) {
@@ -345,23 +448,58 @@ const interact = (() => {
     }
   }
 
-  function markIndex(colour, posType, length, name, e, controller) {
+  function markIndex(
+    colour,
+    posType,
+    length,
+    name,
+    e,
+    controller,
+    player,
+    shipController
+  ) {
     if (e.target.matches('.gridSquare')) {
       const child = e.target;
       const parent = child.parentNode;
       const index = Array.prototype.indexOf.call(parent.children, child);
       const element = document.getElementById(name);
-      chooseShipPos(colour, child, parent, index, posType, length);
-      controller.abort();
-      element.removeEventListener('click', interact.clickShip);
-      element.style.backgroundColor = '#d3d3d3';
-      // remove element hover
-      // convert index to coords
-      // player1.playersGamebaoard.placeship(2, 3, posType, Length, name)
+      const colourCheck = child.style.backgroundColor;
+      const check = chooseShipPos(
+        colour,
+        child,
+        parent,
+        index,
+        posType,
+        length
+      );
+      if (colourCheck !== 'rgb(34, 139, 34)' && check === 'yes') {
+        controller.abort();
+        shipController.abort();
+        element.style.backgroundColor = '#d3d3d3';
+        // convert index to coords
+        const coords = convertToCoords(index, 10);
+        const coordX = coords.x;
+        const coordY = coords.y;
+        // place ship on gameboard array
+        player.playersGamebaoard.placeship(
+          coordX,
+          coordY,
+          posType,
+          length,
+          name
+        );
+      }
     }
   }
 
-  function selectShip(shipName, posType, length, controller) {
+  function selectShip(
+    shipName,
+    posType,
+    length,
+    controller,
+    player,
+    shipController
+  ) {
     document.addEventListener(
       'mouseover',
       (e) => {
@@ -382,25 +520,34 @@ const interact = (() => {
     document.addEventListener(
       'mousedown',
       (e) => {
-        const colour = '#d3d3d3';
-        markIndex(colour, posType, length, shipName, e, controller);
+        const colour = '#228B22';
+        markIndex(
+          colour,
+          posType,
+          length,
+          shipName,
+          e,
+          controller,
+          player,
+          shipController
+        );
       },
       { signal: controller.signal }
     );
   }
 
-  function shipClicked(e) {
+  function shipClicked(e, player, shipController) {
     // abort old controller after each new one.
     const controller = new AbortController();
     const shipName = e.target.id;
     const posType = e.target.value;
     const lengths = e.target.getAttribute('data-key');
     const length = parseInt(lengths, 10);
-    selectShip(shipName, posType, length, controller);
+    selectShip(shipName, posType, length, controller, player, shipController);
   }
 
-  function clickShip(e) {
-    shipClicked(e);
+  function clickShip(e, player, shipController) {
+    shipClicked(e, player, shipController);
   }
   return {
     getCoords,
