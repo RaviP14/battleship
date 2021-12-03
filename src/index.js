@@ -7,7 +7,14 @@ import elem from './elem';
   const player1 = makePlayer.newPlayer();
   elem.gridPlayer.style.display = 'block';
 
-  elem.submarine.addEventListener('click', interact.clickShip);
+  const submarineontroller = new AbortController();
+  elem.submarine.addEventListener(
+    'click',
+    (e) => {
+      interact.clickShip(e, player1, submarineontroller);
+    },
+    { signal: submarineontroller.signal }
+  );
 
   elem.playGameBtn.addEventListener('click', () => {
     elem.gridComp.style.display = 'block';
