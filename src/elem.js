@@ -29,6 +29,9 @@ const elem = (() => {
   const subShip = document.getElementById('submarine');
   const submarine = subShip;
 
+  const shipAttack = document.getElementById('attackship');
+  const attackship = shipAttack;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
     // show grid - grid.style.display = 'grid'
@@ -60,6 +63,7 @@ const elem = (() => {
     playersGrid,
     switchOrientation,
     submarine,
+    attackship,
   };
 })();
 
