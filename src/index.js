@@ -8,12 +8,13 @@ import elem from './elem';
   elem.gridPlayer.style.display = 'block';
 
   const submarineController = new AbortController();
+  let l = 0;
   elem.submarine.addEventListener(
     'click',
     (e) => {
-      if (interact.abortArray.length === 1) {
-        interact.abortArray[0].abort();
-        interact.abortArray = [];
+      if (interact.abortArray.length > 0) {
+        interact.abortArray[l].abort();
+        l += 1;
       }
       interact.clickShip(e, player1, submarineController);
     },
@@ -25,9 +26,9 @@ import elem from './elem';
     'click',
     (e) => {
       // need to remove other ship mouse event listeners...
-      if (interact.abortArray.length === 1) {
-        interact.abortArray[0].abort();
-        interact.abortArray = [];
+      if (interact.abortArray.length > 0) {
+        interact.abortArray[l].abort();
+        l += 1;
       }
       interact.clickShip(e, player1, attackshipController);
     },
