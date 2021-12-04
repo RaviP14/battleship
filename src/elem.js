@@ -26,6 +26,9 @@ const elem = (() => {
   const switchP = document.getElementById('switchP');
   const switchOrientation = switchP;
 
+  const divShips = document.getElementById('shipsDiv');
+  const shipsDiv = divShips;
+
   const subShip = document.getElementById('submarine');
   const submarine = subShip;
 
@@ -76,6 +79,7 @@ const elem = (() => {
     Trooper1,
     Trooper2,
     stealthShip,
+    shipsDiv,
   };
 })();
 
