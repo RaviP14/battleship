@@ -34,6 +34,49 @@ import elem from './elem';
     },
     { signal: attackshipController.signal }
   );
+
+  const trooper1shipController = new AbortController();
+  elem.Trooper1.addEventListener(
+    'click',
+    (e) => {
+      // need to remove other ship mouse event listeners...
+      if (interact.abortArray.length > 0) {
+        interact.abortArray[l].abort();
+        l += 1;
+      }
+      interact.clickShip(e, player1, attackshipController);
+    },
+    { signal: trooper1shipController.signal }
+  );
+
+  const trooper2shipController = new AbortController();
+  elem.Trooper2.addEventListener(
+    'click',
+    (e) => {
+      // need to remove other ship mouse event listeners...
+      if (interact.abortArray.length > 0) {
+        interact.abortArray[l].abort();
+        l += 1;
+      }
+      interact.clickShip(e, player1, attackshipController);
+    },
+    { signal: trooper2shipController.signal }
+  );
+
+  const stealthShipController = new AbortController();
+  elem.stealthShip.addEventListener(
+    'click',
+    (e) => {
+      // need to remove other ship mouse event listeners...
+      if (interact.abortArray.length > 0) {
+        interact.abortArray[l].abort();
+        l += 1;
+      }
+      interact.clickShip(e, player1, attackshipController);
+    },
+    { signal: stealthShipController.signal }
+  );
+
   elem.playGameBtn.addEventListener('click', () => {
     elem.gridComp.style.display = 'block';
     elem.gridPlayer.style.display = 'block';
@@ -41,10 +84,6 @@ import elem from './elem';
     elem.createGrid('computersGrid', elem.gridComp, 10, 10);
 
     const computer = makePlayer.newComputer();
-    // remove player placeships when above code is complete.
-    player1.playersGamebaoard.placeship(2, 3, 'vertical', 2, 'trooper');
-    player1.playersGamebaoard.placeship(9, 4, 'vertical', 4, 'attack ship');
-    player1.playersGamebaoard.placeship(1, 1, 'horizontal', 3, 'submarine');
     // Adds Computers ships
     interact.pcChooseShips(computer);
 
