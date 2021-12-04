@@ -32,6 +32,15 @@ const elem = (() => {
   const shipAttack = document.getElementById('attackship');
   const attackship = shipAttack;
 
+  const shipTrooper1 = document.getElementById('trooper1');
+  const Trooper1 = shipTrooper1;
+
+  const shipTrooper2 = document.getElementById('trooper2');
+  const Trooper2 = shipTrooper2;
+
+  const shipStealth = document.getElementById('stealthship');
+  const stealthShip = shipStealth;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
     // show grid - grid.style.display = 'grid'
@@ -64,6 +73,9 @@ const elem = (() => {
     switchOrientation,
     submarine,
     attackship,
+    Trooper1,
+    Trooper2,
+    stealthShip,
   };
 })();
 
