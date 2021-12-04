@@ -77,6 +77,25 @@ import elem from './elem';
     { signal: stealthShipController.signal }
   );
 
+  elem.switchOrientation.addEventListener('click', (e) => {
+    if (interact.abortArray.length > 0) {
+      interact.abortArray[l].abort();
+    }
+    const val1 = e.target.value;
+    const children = elem.shipsDiv.childNodes;
+    const array = Array.from(children);
+    for (let i = 0; i < array.length; i += 1) {
+      array[i].value = val1;
+    }
+    if (val1 === 'vertical') {
+      elem.switchOrientation.value = 'horizontal';
+      elem.switchOrientation.textContent = 'Horizontal';
+    } else if (val1 === 'horizontal') {
+      elem.switchOrientation.value = 'vertical';
+      elem.switchOrientation.textContent = 'Vertical';
+    }
+  });
+
   elem.playGameBtn.addEventListener('click', () => {
     elem.gridComp.style.display = 'block';
     elem.gridPlayer.style.display = 'block';
