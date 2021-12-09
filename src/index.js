@@ -7,6 +7,20 @@ import elem from './elem';
   const player1 = makePlayer.newPlayer();
   elem.gridPlayer.style.display = 'block';
 
+  elem.instructionsBtn.addEventListener('click', () => {
+    elem.modal.style.display = 'block';
+  });
+
+  elem.closeModal.addEventListener('click', () => {
+    elem.modal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === elem.modal) {
+      elem.modal.style.display = 'none';
+    }
+  });
+
   const submarineController = new AbortController();
   let l = 0;
   elem.submarine.addEventListener(
