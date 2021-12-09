@@ -19,6 +19,7 @@
 }
 
 #modal {
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -36,6 +37,7 @@
   padding: 1.25rem;
   border: 1px solid #a9a9a9;
   width: 80%;
+  max-width: 40rem;
 }
 
 #close {

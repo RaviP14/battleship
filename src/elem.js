@@ -44,6 +44,15 @@ const elem = (() => {
   const shipStealth = document.getElementById('stealthship');
   const stealthShip = shipStealth;
 
+  const modal1 = document.getElementById('modal');
+  const modal = modal1;
+
+  const help = document.getElementById('instructions');
+  const instructionsBtn = help;
+
+  const span1 = document.getElementById('close');
+  const closeModal = span1;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
     // show grid - grid.style.display = 'grid'
@@ -80,6 +89,9 @@ const elem = (() => {
     Trooper2,
     stealthShip,
     shipsDiv,
+    modal,
+    instructionsBtn,
+    closeModal,
   };
 })();
 
