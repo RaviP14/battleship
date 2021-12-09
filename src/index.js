@@ -111,6 +111,7 @@ import elem from './elem';
   });
 
   elem.playGameBtn.addEventListener('click', () => {
+    elem.allPlayerShipsDiv.style.display = 'none';
     elem.gridComp.style.display = 'block';
     elem.gridPlayer.style.display = 'block';
 
