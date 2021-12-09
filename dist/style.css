@@ -3,9 +3,60 @@
   --grid-rows: 1;
 }
 
+body {
+  width: 100%;
+  background-color: #36454f;
+}
+
+#mainDiv {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#heading {
+  text-align: center;
+}
+
+#grids {
+  width: 90%;
+  max-width: 80rem;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5rem;
+}
+
+#buttonsDiv {
+  width: 70%;
+  max-width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#playerShipsDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 1.2rem;
+}
+
+#shipsDiv {
+  padding-left: 0.3rem;
+}
+
+#mainDisplay {
+  padding-top: 1rem;
+  text-align: center;
+}
+
 #playersGrid,
 #computersGrid {
   display: grid;
+  background-color: #ffffff;
   grid-template-rows: repeat(var(--grid-rows), 1fr);
   grid-template-columns: repeat(var(--grid-cols), 1fr);
   border: 1px solid black;
