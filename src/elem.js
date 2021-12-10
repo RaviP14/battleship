@@ -67,8 +67,8 @@ const elem = (() => {
     for (let i = 0; i < rows * columns; i += 1) {
       const gridDiv = document.createElement('div');
       gridDiv.className = 'gridSquare';
-      gridDiv.style.height = `${400 / rows}px`;
-      gridDiv.style.width = `${400 / columns}px`; // change to rem?
+      gridDiv.style.height = `${25 / rows}rem`;
+      gridDiv.style.width = `${25 / columns}rem`;
       grid.appendChild(gridDiv);
     }
     container.appendChild(grid);
