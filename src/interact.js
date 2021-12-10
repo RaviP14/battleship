@@ -87,10 +87,10 @@ const interact = (() => {
     const value = element;
     if (attackP === 'hit' && value.textContent === '') {
       value.style.backgroundColor = '#800000';
-      value.textContent = 'X';
+      value.textContent = '\u00D7';
     } else if (attackP === 'miss' && value.textContent === '') {
       value.style.backgroundColor = '#006994';
-      value.textContent = '.';
+      value.textContent = '\u2022';
     }
   }
 
@@ -107,10 +107,10 @@ const interact = (() => {
         const value = childrenArray[i];
         if (object.attacked === 'hit' && value.textContent === '') {
           value.style.backgroundColor = '#800000';
-          value.textContent = 'X';
+          value.textContent = '\u00D7';
         } else if (object.attacked === 'miss' && value.textContent === '') {
           value.style.backgroundColor = '#006994';
-          value.textContent = '.';
+          value.textContent = '\u2022';
         }
       }
     }
