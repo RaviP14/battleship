@@ -17,7 +17,7 @@ body {
 
 #heading {
   text-align: center;
-  font-family: Tahoma, sans-serif;
+  font-family: tahoma, sans-serif;
 }
 
 #grids {
@@ -56,7 +56,7 @@ button {
   border-radius: 0.12rem;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: Verdana, sans-serif;
+  font-family: verdana, sans-serif;
   font-weight: 300;
   color: #ffffff;
   text-align: center;
@@ -73,6 +73,7 @@ button:hover {
   padding-top: 1rem;
   text-align: center;
   font-size: 1.5rem;
+  font-family: arial, sans-serif;
 }
 
 #playersGrid,
@@ -116,6 +117,8 @@ button:hover {
   border: 1px solid #a9a9a9;
   width: 80%;
   max-width: 40rem;
+  color: #000000;
+  font-family: verdana, sans-serif;
 }
 
 #close {
