@@ -131,7 +131,9 @@ import elem from './elem';
           const xCoord = coord.x;
           const yCoord = coord.y;
           const attackResult = player1.attack(computer, xCoord, yCoord);
-          interact.renderAttackP(attackResult, child);
+          setTimeout(() => {
+            interact.renderAttackP(attackResult, child);
+          });
           // requires different ship names.
           const sunk = computer.playersGamebaoard.allSunk();
           const display = elem.mainDisplay;
@@ -140,17 +142,21 @@ import elem from './elem';
             display.textContent = 'You Win';
             interact.deleteGrids();
             elem.playGameBtn.style.display = 'none';
+            elem.instructionsBtn.style.display = 'none';
+            elem.AllButtonsDiv.style.justifyContent = 'center';
             elem.playAgainBtn.style.display = 'block';
           } else if (attackResult === 'hit') {
             display.textContent = 'Player attack again';
           } else if (sunk === 'not all sunk' && attackResult === 'miss') {
             display.textContent = 'PCs attack';
-            interact.renderAttackComputer(
-              elem.mainDisplay,
-              elem.playersGrid,
-              player1,
-              computer
-            );
+            setTimeout(() => {
+              interact.renderAttackComputer(
+                elem.mainDisplay,
+                elem.playersGrid,
+                player1,
+                computer
+              );
+            }, 600);
           }
         }
       }
