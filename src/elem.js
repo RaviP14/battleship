@@ -56,6 +56,9 @@ const elem = (() => {
   const allPlayerShips = document.getElementById('playerShipsDiv');
   const allPlayerShipsDiv = allPlayerShips;
 
+  const buttonsDiv = document.getElementById('buttonsDiv');
+  const AllButtonsDiv = buttonsDiv;
+
   function makeGrid(gridName, container, rows, columns) {
     const grid = document.getElementById(gridName);
     // show grid - grid.style.display = 'grid'
@@ -96,6 +99,7 @@ const elem = (() => {
     instructionsBtn,
     closeModal,
     allPlayerShipsDiv,
+    AllButtonsDiv,
   };
 })();
 
