@@ -18,7 +18,7 @@ Live preview is available <a href="https://ravip14.github.io/battleship/">here</
 - Ship Factory Function stores the relevant ship info.
 - Gameboard Factory Function stores everything that occurs on the gameboard.
 - Player & Computer AI Factory functions handle all players and computers moves.
-- All factory functions are **tested with Jest**.
+- All factory functions are **tested with Jest tests which I have created**.
 - Features **Computer AI** able to attack once player attacks.
 - Computer AI is able to have upto 3 consecutive successful attacks.
 - Player can place ships using custom ship placement.
