@@ -82,12 +82,12 @@ button:hover {
   background-color: #ffffff;
   grid-template-rows: repeat(var(--grid-rows), 1fr);
   grid-template-columns: repeat(var(--grid-cols), 1fr);
-  border: 1px solid black;
-  max-width: 416px;
+  border: 0.063rem solid black;
+  max-width: 26rem;
 }
 
 .gridSquare {
-  border: 1px solid black;
+  border: 0.063rem solid black;
   line-height: 0;
   width: 100%;
   display: flex;
@@ -114,7 +114,7 @@ button:hover {
   background-color: rgb(245, 245, 245);
   margin: 15% auto;
   padding: 1.25rem;
-  border: 1px solid #a9a9a9;
+  border: 0.063rem solid #a9a9a9;
   width: 80%;
   max-width: 40rem;
   color: #000000;
@@ -124,7 +124,7 @@ button:hover {
 #close {
   color: #aaa;
   float: right;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: bold;
 }
 
